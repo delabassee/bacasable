@@ -1,7 +1,7 @@
 ${bootstrap}
 ${markdown}
 
-An introduction sentence. Another introduction sentence.
+Here is some markdown content.
 
 An introduction sentence.
 
@@ -9,15 +9,21 @@ An introduction sentence.
 
 Some content. -Some old content.-
 
-* Name ${name}
-* Date ${date}
-* Time ${time}
+* Author: ${name}
+* Date: ${date}
+* Time: ${time}
 
 Some content. Some content.
+
+1. One
+2. Two
+3. Threee
+
+`dataModel.setAuhtor(this.entry.getAuthor());`
+
+[Visit Oracle!](www.oracle.com).
 
     SomeClass clazz = new SomeClass();
     clazz.test();
 
 Some content.
-
-Here is some markdown content.
