@@ -4,5 +4,3 @@ ${bootstrap}
 ${"THis sHOULD bE cApitliazed"?capitalize}
 
 <h4>This note was written by ${name} on ${date}.</h4>
-
-
