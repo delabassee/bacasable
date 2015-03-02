@@ -1,6 +1,6 @@
 ${bootstrap}
 
-<h1>This is a simple, template based, page</h1>
+<h1>This is a simple, FTL based, page</h1>
 
 ${"THis LIne SHoULd bE correctLY cApitliazed"?capitalize}
 
