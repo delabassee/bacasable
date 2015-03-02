@@ -2,5 +2,7 @@
 
 <h3>Today is ${date}</h3>
 
+Clock says ${time}.
+
 Done! 
 ${bootstrap}
