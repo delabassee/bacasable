@@ -3,3 +3,9 @@ Today is ${date}
 
 
 And we're done!
+
+
+
+
+
+${"GreEN mouse"?capitalize}
