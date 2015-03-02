@@ -1,5 +1,6 @@
 ${bootstrap}
-<h1>This is a template that says Nothing</h1>
+
+<h1>This is a simple, template based, page</h1>
 
 ${"THis sHOULD bE cApitliazed"?capitalize}
 
