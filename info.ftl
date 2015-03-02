@@ -2,7 +2,7 @@
 
 <h3>Today is ${date}</h3>
 
-Clock says ${time}.
+Clock : ${time}
 
 
 Done! 
