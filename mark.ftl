@@ -7,11 +7,11 @@ An introduction sentence.
 
 # First header title
 
-Some content. Some content.
+Some content. -Some old content.-
 
-* List item 1: ${name}
-* List item 2: ${date}
-* List item 2: ${time}
+* Name ${name}
+* Date ${date}
+* Time ${time}
 
 Some content. Some content.
 
@@ -21,5 +21,3 @@ Some content. Some content.
 Some content.
 
 Here is some markdown content.
-
-<b>TEST</b>
