@@ -4,7 +4,6 @@ ${bootstrap}${markdown}
 An introduction sentence.
 
 Some list: 
-
 * Author: ${name}
 * Date: ${date}
 * Time: ${time}
