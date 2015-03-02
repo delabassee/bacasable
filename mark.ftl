@@ -22,4 +22,4 @@ Some content.
 
 Here is the markdown content.
 
-<b>test</b>
+<b>TEST</b>
