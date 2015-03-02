@@ -1,6 +1,7 @@
 ${bootstrap}
-This is a template that says : Hello ${name}.
+This is a template that says : Hello ${name}
 
-Today is ${date}
+<h5>Today is ${date}</h5>
+
 
 Done!
