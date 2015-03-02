@@ -1,19 +1,19 @@
 ${bootstrap}${markdown}
-## Some markdown content
-### subtitle 
+## Markdown content
+### Example 
 An introduction sentence.
 
-Some content. 
+Some list: 
 
-*Author: ${name}
-*Date: ${date}
-*Time: ${time}
+* Author: ${name}
+* Date: ${date}
+* Time: ${time}
 
-Some content. Some content.
+Another list:
 
-1.Java EE 6
-2.Java EE 7
-3.Java EE 8
+1. Java EE 6
+2. Java EE 7
+3. Java EE 8
 
 ***
 
