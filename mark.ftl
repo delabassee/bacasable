@@ -1,11 +1,9 @@
 ${bootstrap}
 ${markdown}
 
-Here is some markdown content.
+# Some markdown content
 
 An introduction sentence.
-
-# First header title
 
 Some content. -Some old content.-
 
@@ -15,15 +13,17 @@ Some content. -Some old content.-
 
 Some content. Some content.
 
-1. One
-2. Two
-3. Threee
+1. Java EE 6
+2. Java EE 7
+3. Java EE 8
+
+***
 
 `dataModel.setAuhtor(this.entry.getAuthor());`
 
-[Visit Oracle!](www.oracle.com).
-
+***
     SomeClass clazz = new SomeClass();
     clazz.test();
+---
 
-Some content.
+[Visit Oracle!](http://www.oracle.com)
