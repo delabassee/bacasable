@@ -1,7 +1,6 @@
 ${bootstrap}
 ${markdown}
 
-
 An introduction sentence. Another introduction sentence.
 
 An introduction sentence.
