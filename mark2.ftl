@@ -3,12 +3,10 @@ ${bootstrap}${markdown}
 	<div class="row-fluid">
 		<div class="span12">
 			<h3>title</h3>
-
 		</div>
 	</div>
 	<div class="row-fluid">
-		<div class="span1">
-		</div>
+		<div class="span1"></div>
 		<div class="span10">
 
 ## Markdown content
@@ -36,10 +34,7 @@ Another list:
     clazz.test();
     
 Don't forgot to visit [Oracle!](http://www.oracle.com)!
-
-
 		</div>
-		<div class="span1">
-		</div>
+		<div class="span1"></div>
 	</div>
 </div>
