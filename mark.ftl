@@ -1,4 +1,5 @@
-${bootstrap}${markdown}
+<#--${bootstrap}${markdown}-->
+
 ## Markdown content
 ### Example 
 An introduction sentence.
