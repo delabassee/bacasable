@@ -28,7 +28,7 @@ Point the *'Installation Location'* to where you have GlassFish 4.x installed on
 
 Go to File->Open Project. Select the Cargo Tracker project from the file system and hit *'Open Project'*. NetBeans should recognize it as a Maven project on the file system. It may take a little bit to open and scan the project. 
 
-![pic](pic/nb_step4.png)
+![](/ct/pic/nb_step4.png)
 
 After the project opens, immediately build it (you may be prompted to do a priming build, you can ignore the prompt). This will automatically download all the Maven dependencies. To build, right click on the project and hit *'Clean and Build'*. It may take a little bit for the project to build. 
 
