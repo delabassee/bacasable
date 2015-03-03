@@ -1,3 +1,4 @@
+${bootstrap}${markdown}
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span12">
@@ -9,8 +10,6 @@
 		<div class="span1">
 		</div>
 		<div class="span10">
-
-<#--${bootstrap}${markdown}-->
 
 ## Markdown content
 ### Example 
