@@ -7,6 +7,7 @@ Dillinger is a cloud-enabled, mobile-ready, offline-storage, AngularJS powered H
   - Type some Markdown
   - See HTML
   - Magic
+  - Books
 
 Markdown is a *lightweight markup language* based on the formatting conventions that people naturally use in email.  As [John Gruber] writes on the [Markdown site] [1]:
 
