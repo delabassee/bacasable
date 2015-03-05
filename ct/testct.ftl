@@ -9,7 +9,7 @@ Voici mon titre '${title}'
 ##Prerequisites
 
 * JDK 8
-* NetBeans 7.4 or higher (NetBeans 8.1 recommended)
+* NetBeans 17.4 or higher (NetBeans 8.1 recommended)
 * ${title}
 
 ##${title}
