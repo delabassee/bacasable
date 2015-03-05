@@ -1,6 +1,6 @@
 ${bootstrap}${markdown}
 
-#How to setup Cargo Tracker in NetBeans
+#How to setup Cargo Tracker in NB
 
 ##Prerequisites
 
