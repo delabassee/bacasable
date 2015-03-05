@@ -5,7 +5,7 @@ ${bootstrap}${markdown}
 ##Prerequisites
 
 * JDK 8
-* GlassFish 4.x (GF 4.1 recommended)
+* GlassFish 4.1
 * NetBeans 7.4 or higher (NetBeans 8.1 recommended)
 
 ##Download
