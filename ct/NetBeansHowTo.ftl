@@ -1,6 +1,6 @@
 ${bootstrap}${markdown}
-${bootstrap}${markdown}
 <#--title=How to setup Cargo Tracker in NetBeans--> 
+
 
 ##Prerequisites
 
