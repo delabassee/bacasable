@@ -5,7 +5,7 @@ ${bootstrap}${markdown}
 <#--info=This is just some info-->
 <#--data=This is just some data-->
 
-#${title}
+Voici mon titre: ${title}
 
 ##Prerequisites
 
