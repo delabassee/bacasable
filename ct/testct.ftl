@@ -3,7 +3,7 @@ ${bootstrap}${markdown}
 
 <#--title=How to setup Cargo Tracker in NB--> 
 <#--info=This is just some info-->
-<#--data=This is just some data-->
+<#--data=This is just some other data-->
 
 Voici mon titre: ${title}
 
