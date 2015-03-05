@@ -1,22 +1,19 @@
 ${bootstrap}${markdown}
+<#--title=How to setup Cargo Tracker in NB--> 
+<#--info=This is just some info-->
+<#--data=This is just some data-->
 
-#How to setup Cargo Tracker in NB
-
-<#macro greet>
-  Bonjour
-</#macro>
+#${title}
 
 ##Prerequisites
 
 * JDK 8
-* GlassFish 4.1
 * NetBeans 7.4 or higher (NetBeans 8.1 recommended)
-* <@greet/>
-* <@greet/>
-* <@greet/>
+* ${title}
 
-##<@greet/>
+##${title}
 
+${data}
 
 [Download](http://java.net/projects/cargotracker/downloads) the source code zip file and expand it somewhere in your file system, ideally into *'/Projects'*. Note that this is a Maven project. 
 
