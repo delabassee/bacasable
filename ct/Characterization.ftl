@@ -16,6 +16,8 @@ Cargo has both a clear identity and a life-cycle with state transitions that we 
 
 The cargo's delivery state will change during it's lifetime. It's transport status will start out as NOT_RECEIVED, i.e. booked but not yet handed over to the shipping company at the port, and in the normal case ends its life as CLAIMED (note that this is a property of the cargo's Delivery), tracking the current state the cargo. During a cargo's lifetime it may be assigned new destinations, its itinerary may be changed many times and it's delivery will be recalculated as new HandlingEvents are received.
 
+![ ](/ct/pic/cargo.png)
+
 A Voyage is a vessel's trip from origin to destination, typically made up of several segments (CarrierMovements). In the application a Voyage consists of a Schedule with the different CarrierMovements in it and has a very clear notion of identity, VoyageNumber. This id could be something like a flight number for air shipments or a vessel voyage number for a ship, it is not the name or the identification of the actual vessel.
 
 Unsurprisingly, domain entities are usually implemented as JPA entities. Note however, that sometimes it is necessary or convenient to implement value objects as entities as well.
@@ -26,11 +28,15 @@ A Leg consists of a starting point and an ending point (to Location and from Loc
 
 An Itinerary consists of a list of legs, with the load location of the first leg in the list as the starting point of the itinerary and the unload location of the last leg as the final destination. The same reasoning applies to itineraries as to legs, they do not have identity and are implemented as Value Objects. Now, a cargo can certainly have its itinerary updated. One way to accomplish this would be to keep the original itinerary instance and update the legs in the itinerary's list, in this case the itinerary must be mutable and has to be implemented as an entity. With the itinerary as a Value Object, as in the case of our application model and implementation, updating it is a simple operation of acquiring a complete new itinerary from the RoutingService and replacing the old one. Implementation of a cargo's itinerary management is much simplified by having the itinerary as a Value Object.
 
+![ ](/ct/pic/leg.png)
+
 Value Objects are typically implemented as JPA embedded objects. However, it is sometimes useful and valid to implement them as JPA entities.
 
 ##Domain Events
 
 Some things clearly have identity but no life-cycle, or an extremely limited life-cycle with just one state. We call these things Domain Events and they can be viewed as hybrid of Entities and Value Objects. In our application HandlingEvent is a Domain Event that represent a real-life event such as cargo being loaded or unloaded, customs cleared etc. They carry both a completion time and a registration time. The completion time is the time when the event occurred and the registration time is the time when the event was received by the system. The handling event id is composed of the cargo, voyage, completion time, location and type (LOAD, UNLOAD etc).
+
+![ ](/ct/pic/handling_event.png)
 
 Domain Events are usually implemented as JPA entities.
 
@@ -40,12 +46,17 @@ In real life most things are connected, directly or indirectly. Mimicking this a
 
 Cargo is the central aggregate in the application. The classes in the cargo aggregate are in the net.java.cargotracker.domain.model.cargo package. Cargo is the aggregate root and the aggregate also contains the Value Objects delivery, itinerary, leg and a few more classes.
 
+![ ](/ct/pic/aggregate.png)
+
 Handling is another important aggregate. It contains the handling events that are registered throughout a cargo's progress from NOT_RECEIVED to CLAIMED. The handling events have a relation to the cargo for which the event belongs. This is allowed since cargo itself is an aggregate root.
 
 The main reason for not making handling event part of the cargo aggregate is performance. Handling events are received from external parties and systems, e.g. warehouse management systems, port handling systems, that call our HandlingReportService REST web service implementation. The number of events can be very high and it is important that our web service can dispatch the remote calls quickly. To be able to support this use case we need to handle the web service calls asynchronously, i.e. we do not want to load the big cargo structure synchronously for each received handling event. Since all relationships in an aggregate must be handled synchronously we put the handling event in an aggregate of its own and we are able processes the events quickly and at the same time eliminate lock contention in the system.
-Repositories
+
+##Repositories
 
 With the aggregates and their roots identified it is fairly trivial to identify the Repositories. Repositories retrieve and save aggregate roots from and to persistent storage. In our application there is one Repository per aggregate root. For example, the CargoRepository is responsible for finding and storing cargo aggregates. The finders return Cargo instances or lists of Cargo instances.
+
+![ ](/ct/pic/cargo_repository.png)
 
 While Repository interfaces are part of the domain layer, their implementations are part of the infrastructure layer. For example the CargoRepository has JPA implementation in the infrastructure layer, JpaCargoRepository.
 
@@ -63,10 +74,14 @@ Domain services encapsulate key domain concepts that just are not naturally mode
 
 A good example of that is the RoutingService, which provides access to the routing system and is used to find possible routes for a given specification. The implementation, ExternalRoutingService, communicates with another system and translates to/from an external API/data model in the infrastructure layer.
 
+![ ](/ct/pic/routing_service.png)
+
 On the other hand, if the service can be implemented strictly using the domain layer, both the interface and the implementation could be part of the domain layer.
 
 ##Application Services
 
 Application services represent the high level business operations for the system and constitute the application layer. They provide a high-level abstraction for clients to use when interacting with the domain. The net.java.cargotracker.application package container all the services for the application such as BookingService and HandlingEventService. The application services are a natural place to apply concerns such as pooling, transactions and security. This is why application services are typically implemented using EJB or transactional CDI beans.
+
+![ ](/ct/pic/booking_service.png)
 
 In some situations, e.g. when dealing with graphs of lazy-loaded domain objects or when passing services' return values over network boundaries, the services are wrapped in facades. The facades handle ORM session management issues and/or convert the domain objects to more portable Data Transfer Objects that can be tailored to specific use cases. In that case, we consider the DTO-serializing facade part of the interfaces layer. See BookingServiceFacade for an example
