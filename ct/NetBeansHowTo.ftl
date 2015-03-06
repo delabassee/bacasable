@@ -14,11 +14,11 @@ ${bootstrap}${markdown}
 
 Start NetBeans, you will first need to configure GlassFish 4.x. Go in the *'Services'* tab, right click *'Servers'* and hit *'Add Server'*.
 
-<img src="/ct/nb_step1.png"/>
+![](/ct/nb_step1.png)
 
 On the *'Add Server Instance'* dialog, choose GlassFish and give the instance a sensible name. Hit *'Next'*.
 
-<img src="/ct/nb_step2.png"/>
+![ ](/ct/nb_step2.png)
 
 Point the *'Installation Location'* to where you have GlassFish 4.x installed on your file system. Hit *'Next'*. On the *'Domain Location'* screen, accept the defaults and hit *'Finish'*. 
 
