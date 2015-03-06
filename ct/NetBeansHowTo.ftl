@@ -1,6 +1,7 @@
 ${bootstrap}${markdown}
 <#--title=How to setup Cargo Tracker in NetBeans-->
 [pic1]: /ct/nb_step1.png
+[pic2]: /ct/nb_step2.png
 ##Prerequisites
 
 * JDK 8
@@ -17,10 +18,9 @@ Start NetBeans, you will first need to configure GlassFish 4.x. Go in the *'Serv
 
 ![pic1]
 
-
 On the *'Add Server Instance'* dialog, choose GlassFish and give the instance a sensible name. Hit *'Next'*.
 
-![pic](/ct/nb_step2.png)
+![pic2]
 
 Point the *'Installation Location'* to where you have GlassFish 4.x installed on your file system. Hit *'Next'*. On the *'Domain Location'* screen, accept the defaults and hit *'Finish'*. 
 
