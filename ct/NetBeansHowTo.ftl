@@ -1,6 +1,7 @@
 ${bootstrap}${markdown}
 <#--title=How to setup Cargo Tracker in NetBeans-->
 <#--author=Reza Rahman-->
+<#--someTag=1-->
 ##Prerequisites
 
 * JDK 8 and higher
