@@ -1,7 +1,4 @@
-centered {
-	text-align: center
-} 
-
-footer-text-size {
-	font-size:x-small;
+footer-style {
+	text-align: center;
+	font-size: 80%;
 }
