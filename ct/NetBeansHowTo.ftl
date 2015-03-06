@@ -14,31 +14,31 @@ ${bootstrap}${markdown}
 
 Start NetBeans, you will first need to configure GlassFish 4.x. Go in the *'Services'* tab, right click *'Servers'* and hit *'Add Server'*.
 
-![ ]('/ct/nb_step1.png')
+<img src="/ct/nb_step1.png"/>
 
 On the *'Add Server Instance'* dialog, choose GlassFish and give the instance a sensible name. Hit *'Next'*.
 
-![ ](/ct/nb_step2.png)
+<img src="/ct/nb_step2.png"/>
 
 Point the *'Installation Location'* to where you have GlassFish 4.x installed on your file system. Hit *'Next'*. On the *'Domain Location'* screen, accept the defaults and hit *'Finish'*. 
 
-![ ](/ct/nb_step3.png)
+<img src="/ct/nb_step3.png"/>
 
 Go to File->Open Project. Select the Cargo Tracker project from the file system and hit *'Open Project'*. NetBeans should recognize it as a Maven project on the file system. It may take a little bit to open and scan the project. 
 
-![pic](/ct/nb_step4.png)
+<img src="/ct/nb_step4.png"/>
 
 After the project opens, immediately build it (you may be prompted to do a priming build, you can ignore the prompt). This will automatically download all the Maven dependencies. To build, right click on the project and hit *'Clean and Build'*. It may take a little bit for the project to build. 
 
-![pic](/ct/nb_step5.png)
+<img src="/ct/nb_step5.png"/>
 
 After the project builds, you are now ready to run it.
 
-![pic](/ct/nb_step6.png)
+<img src="/ct/nb_step6.png"/>
 
 You will now need to associate the Cargo Tracker project with GlassFish 4.x. To do this, right-click the project and select *'Properties'*. Then select *'Run'*. Select the GlassFish instance you just created as the *'Server'*, make sure the *'Context Path'* is set to *'/cargo-tracker'*, accept the rest of the defaults and hit *'OK'*. It might take a bit to save the project data. 
 
-![pic](/ct/nb_step7.png)
+<img src="/ct/nb_step7.png"/>
 
 You are now ready to run the application. Right click on the project and hit *'Run'*. The first time startup might take a bit of time. After GlassFish starts, NetBeans should open up a browser window with the application. 
 
