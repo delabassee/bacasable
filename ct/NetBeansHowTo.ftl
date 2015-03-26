@@ -1,7 +1,7 @@
 ${bootstrap}${markdown}
 <#--title=How to setup Cargo Tracker in NetBeans-->
 <#--author=Reza Rahman-->
-<#--triggerUpdate=2-->
+<#--triggerUpdate=3-->
 ##Prerequisites
 
 * JDK 8 or higher
