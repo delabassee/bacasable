@@ -15,35 +15,80 @@ ${bootstrap}${markdown}
 ##Eclipse Download and Setup Instructions
 
 To download and install Eclipse Mars (latest release as of 2015-09-04), go to the Eclipse [download page](https://eclipse.org/downloads/packages/release/Mars/R).
+![ ](/ct/e_step1.png)
 
-Start NetBeans, you will first need to configure GlassFish 4.x. Go in the *'Services'* tab, right click *'Servers'* and hit *'Add Server'*.
+Choose "Eclipse IDE for Java EE Developers" and make sure to select the download that match your operating system.
+![ ](/ct/e_step2.png)
 
-![ ](/ct/nb_step1.png)
+Save the file and unzip it into the desired location. 
+Launch Eclipse and create/select an adequate workspace to import the Cargo Tracker project. You can now close the Welcome page.
 
-On the *'Add Server Instance'* dialog, choose GlassFish and give the instance a sensible name. Hit *'Next'*.
+In the 'Project Explorer' (Window->Show View->Project Explorer), right click and choose Import->Import...
+![ ](/ct/e_step3.png)
 
-![ ](/ct/nb_step2.png)
+Maven->'Existing Maven Projects'
+![ ](/ct/e_step4.png)
 
-Point the *'Installation Location'* to where you have GlassFish 4.x installed on your file system. Hit *'Next'*. On the *'Domain Location'* screen, accept the defaults and hit *'Finish'*. 
+Browse to the location where you unzipped the cargo-tracker project and click 'Finish'. You should end up with a project in the 'Project Explorer' and warnings in the 'Markers' pane.
+![ ](/ct/e_step4.png)
 
-![ ](/ct/nb_step3.png)
+##Download and install the Glassfish Plug-ins for Eclipse
+Open the 'Servers' view (Window->Show View->Servers) and click the link 'No servers are available. 
+Click 'Download additional server adapters. 
+![ ](/ct/e_step5.png)
 
-Go to File->Open Project. Select the Cargo Tracker project from the file system and hit *'Open Project'*. NetBeans should recognize it as a Maven project on the file system. It may take a little bit to open and scan the project. 
+Select GlassFish Tools from the list, Next, Accept the terms of the license agreements. 
+GlassFish Tools will be downloaded/installed and allow Eclipse to restart when prompted. 
+In the 'Servers' view (Window->Show View->Servers), again, click the link 'No servers are available to create a new server'.
+![ ](/ct/e_step6.png)
 
-![ ](/ct/nb_step4.png)
+From the list, expand the GlassFish folder and select GlassFish4, click 'Next. 
+Assign an admin and server name if desired. Click 'Next' 
 
-After the project opens, immediately build it (you may be prompted to do a priming build, you can ignore the prompt). This will automatically download all the Maven dependencies. To build, right click on the project and hit *'Clean and Build'*. It may take a little bit for the project to build. 
+Define a server root by navigating to the location on your hard drive of the install directory of the GlassFish4.X server that you want to use. 
 
-![ ](/ct/nb_step5.png)
+Select the JDK that you want to use. If none are available from the dropdown list, add one through the icon on the right side of the dropdown list. Uncheck any JRE version selected and click 'Add'. Use 'Standard VM' and 'Next'. Select a JDK environment using the 'Directory' button. Click 'Finish'.
+![ ](/ct/e_step7.png)
 
-After the project builds, you are now ready to run it.
+Select the newly create JDK link. Select the JDK from the dropdown list. 'Next' Assign a new admin name and password if you want to. 'Finish'.
+![ ](/ct/e_step8.png)
 
-![ ](/ct/nb_step6.png)
+##Fixing inconsistency between the Build Path and the execution environment
+![ ](/ct/e_step9.png)
 
-You will now need to associate the Cargo Tracker project with GlassFish 4.x. To do this, right-click the project and select *'Properties'*. Then select *'Run'*. Select the GlassFish instance you just created as the *'Server'*, make sure the *'Context Path'* is set to *'/cargo-tracker'*, accept the rest of the defaults and hit *'OK'*. It might take a bit to save the project data. 
+In the 'Project Explorer', right-click the cargo-tracker project, Properties->Java Build Path, Libraries tab. 
 
-![ ](/ct/nb_step7.png)
+Select JRE System Library[JavaSE-XX], click Edit... 
 
-You are now ready to run the application. Right click on the project and hit *'Run'*. The first time startup might take a bit of time. After GlassFish starts, NetBeans should open up a browser window with the application. 
+Select Workspace default JRE (jdk1.x.x_xx), Finish.
 
-There is a tracking interface to track the current status of cargo and a booking interface to book and route cargo. You should explore both interfaces before diving into the code. You should also check out the [REST](https://java.net/projects/cargotracker/sources/svn/content/tags/1.0/src/main/java/net/java/cargotracker/interfaces/handling/rest/HandlingReportService.java) and [file processing](https://java.net/projects/cargotracker/sources/svn/content/tags/1.0/src/main/java/net/java/cargotracker/interfaces/handling/file/UploadDirectoryScanner.java) interfaces to register handling events as well as the HTML5/JavaScript client that uses the REST interface and targets mobile devices. You can test against the REST interfaces using our [soapUI tests](https://java.net/projects/cargotracker/sources/svn/show/tags/1.0/src/test/soapui).
+![ ](/ct/e_step10.png)
+
+Give Eclipse the time to recompile the project.
+
+##Building the project
+
+In the 'Project Explorer', right click on the pom.xml file, Run As->Maven Install
+![ ](/ct/e_step11.png)
+
+Depending on your machine capabilities, the first build could take some time. On an Intel Core i5 with 32G of RAM, it took just over 6 minutes.
+![ ](/ct/e_step12.png)
+
+##Starting the GlassFish server and Deploying the cargo-tracker project
+
+On the 'Servers' tab, select your GF server and click the 'Restart' button (green play button).
+![ ](/ct/e_step13.png)
+
+In the Project Explorer, right-click the cargo-tracker project, 'Run As'->'On server', your GF server should be selected. Check the 'Always use this server when running this project'
+![ ](/ct/e_step14.png)
+
+The project main page should be available from within Eclipse or you can also access it from an external browser.
+![ ](/ct/e_step15.png)
+
+There is a tracking interface to track the current status of cargo and a booking interface to book and route cargo. You should explore both interfaces before diving into the code. You should also check out the REST and file processing interfaces to register handling events as well as the HTML5/JavaScript client that uses the REST interface and targets mobile devices. You can test against the REST interfaces using our soapUI tests.
+
+
+
+
+
+
