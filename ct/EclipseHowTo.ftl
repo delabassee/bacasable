@@ -48,7 +48,9 @@ In the 'Servers' view (Window->Show View->Servers), click the 'No servers are av
 
 From the list, expand the GlassFish folder and select 'GlassFish 4', click 'Next.  
 Assign an admin and server name if necessary, click 'Next'.
+
 Define a server root by navigating to the directory of your GlassFish 4.x installation.
+
 Select the JDK that you want to use. If none are available from the dropdown list, add one through the icon on the right side of the dropdown list. Uncheck any JRE version selected and click 'Add'. Use 'Standard VM' and 'Next'. Select a JDK environment using the 'Directory' button. Click 'Finish'.
 
 ![ ](/ct/e_step9.png)
@@ -64,13 +66,17 @@ Select the newly created JDK link. Select the JDK from the dropdown list, 'Finis
 In the 'Project Explorer', right-click the Cargo Tracker project, 'Properties->Java Build Path', 'Libraries' tab. 
 Select 'JRE System Library[JavaSE-XX]', click 'Edit...'; select 'Workspace default JRE (jdk1.x.x_xx)', then 'Finish'.
 
-![ ](/ct/e_step13.png)
+![ ](/ct/e_step12.png)
 
 Give Eclipse some time to compile the project...
 
 ##Build Cargo Tracker
 
 In the 'Project Explorer', right click on the pom.xml file, 'Run As->Maven Install'
+
+![ ](/ct/e_step13.png)
+
+The build process might take some time...
 
 ![ ](/ct/e_step14.png)
 
