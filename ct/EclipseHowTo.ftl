@@ -31,40 +31,40 @@ Select 'Existing Maven Projects' in the 'Maven' entry.
 Select the location where the Cargo Tracker sources have been unzipped and click 'Finish'. 
 You should end up with the Cargo Project loaded in the 'Project Explorer' and some warnings in the 'Markers' pane.
 
-![ ](/ct/e_step4.png)
+![ ](/ct/e_step5.png)
 
-##Install the Glassfish Plug-in for Eclipse
+##Install the GlassFish Plug-in for Eclipse
 
 Open the 'Servers' view (Window->Show View->Servers) and click the 'No servers are available' link. 
 Click 'Download additional server adapters. 
 
-![ ](/ct/e_step5.png)
+![ ](/ct/e_step7.png)
 
 Select 'GlassFish Tools' from the list, 'Next' and 'Accept the terms of the license agreements'. 
 GlassFish Tools will then be downloaded and installed. To finish this step, Eclipse should be restarted.
 In the 'Servers' view (Window->Show View->Servers), click the 'No servers are available to create a new server' link .
 
-![ ](/ct/e_step6.png)
+![ ](/ct/e_step8.png)
 
 From the list, expand the GlassFish folder and select 'GlassFish 4', click 'Next.  
 Assign an admin and server name if necessary, click 'Next'.
 Define a server root by navigating to the directory of your GlassFish 4.x installation.
 Select the JDK that you want to use. If none are available from the dropdown list, add one through the icon on the right side of the dropdown list. Uncheck any JRE version selected and click 'Add'. Use 'Standard VM' and 'Next'. Select a JDK environment using the 'Directory' button. Click 'Finish'.
 
-![ ](/ct/e_step7.png)
+![ ](/ct/e_step9.png)
 
 Select the newly created JDK link. Select the JDK from the dropdown list, 'Finish'.
 
-![ ](/ct/e_step8.png)
+![ ](/ct/e_step10.png)
 
 ##Fix inconsistencies between the Build Path and the environment
 
-![ ](/ct/e_step9.png)
+![ ](/ct/e_step11.png)
 
 In the 'Project Explorer', right-click the Cargo Tracker project, 'Properties->Java Build Path', 'Libraries' tab. 
 Select 'JRE System Library[JavaSE-XX]', click 'Edit...'; select 'Workspace default JRE (jdk1.x.x_xx)', then 'Finish'.
 
-![ ](/ct/e_step10.png)
+![ ](/ct/e_step14.png)
 
 Give Eclipse some time to compile the project...
 
@@ -72,17 +72,17 @@ Give Eclipse some time to compile the project...
 
 In the 'Project Explorer', right click on the pom.xml file, 'Run As->Maven Install'
 
-![ ](/ct/e_step11.png)
+![ ](/ct/e_step15.png)
 
 Depending on your machine capabilities, the initial build might take some time...
 
-![ ](/ct/e_step12.png)
+![ ](/ct/e_step16.png)
 
 ##Deploy Cargo Tracker
 
 On the 'Servers' tab, select your GlassFish instance and click 'Restart'.
 
-![ ](/ct/e_step13.png)
+![ ](/ct/e_step17.png)
 
 In the 'Project Explorer', right-click the Cargo Tracker project, 'Run As'->'On server', your GF instance should be selected. Check the 'Always use this server when running this project'.
 
