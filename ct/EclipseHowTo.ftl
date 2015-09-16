@@ -64,7 +64,7 @@ Select the newly created JDK link. Select the JDK from the dropdown list, 'Finis
 In the 'Project Explorer', right-click the Cargo Tracker project, 'Properties->Java Build Path', 'Libraries' tab. 
 Select 'JRE System Library[JavaSE-XX]', click 'Edit...'; select 'Workspace default JRE (jdk1.x.x_xx)', then 'Finish'.
 
-![ ](/ct/e_step14.png)
+![ ](/ct/e_step13.png)
 
 Give Eclipse some time to compile the project...
 
@@ -72,24 +72,20 @@ Give Eclipse some time to compile the project...
 
 In the 'Project Explorer', right click on the pom.xml file, 'Run As->Maven Install'
 
-![ ](/ct/e_step15.png)
-
-Depending on your machine capabilities, the initial build might take some time...
-
-![ ](/ct/e_step16.png)
+![ ](/ct/e_step14.png)
 
 ##Deploy Cargo Tracker
 
 On the 'Servers' tab, select your GlassFish instance and click 'Restart'.
 
-![ ](/ct/e_step17.png)
+![ ](/ct/e_step15.png)
 
 In the 'Project Explorer', right-click the Cargo Tracker project, 'Run As'->'On server', your GF instance should be selected. Check the 'Always use this server when running this project'.
 
-![ ](/ct/e_step14.png)
+![ ](/ct/e_step16.png)
 
 The project main page should be available from within Eclipse or you can also access it from any external browser.
 
-![ ](/ct/e_step15.png)
+![ ](/ct/e_step17.png)
 
 There is a tracking interface to track the current status of cargo and a booking interface to book and route cargo. You should explore both interfaces before diving into the code. You should also check out the [REST](https://java.net/projects/cargotracker/sources/svn/content/tags/1.0/src/main/java/net/java/cargotracker/interfaces/handling/rest/HandlingReportService.java) and [file processing](https://java.net/projects/cargotracker/sources/svn/content/tags/1.0/src/main/java/net/java/cargotracker/interfaces/handling/file/UploadDirectoryScanner.java) interfaces to register handling events as well as the HTML5/JavaScript client that uses the REST interface and targets mobile devices. You can test against the REST interfaces using our [soapUI tests](https://java.net/projects/cargotracker/sources/svn/show/tags/1.0/src/test/soapui).
