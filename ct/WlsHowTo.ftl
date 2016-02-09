@@ -3,8 +3,10 @@ ${bootstrap}${markdown}
 <#--author=Reza Rahman-->
 <#--triggerUpdate=2-->
 
-It is possible to run Cargo Tracker on WebLogic with any Maven capable IDE or without an IDE. In the following instructions we will outline how to do so specifically with NetBeans. The instructions should be generally helpful with running the application any other way using WebLogic such as in another Maven capable IDE like IntelliJ. Note that we currently do not recommend Eclipse due to it's weak support of Maven. For detailed reasons why this is the case, please look [here](https://java.net/jira/browse/CARGOTRACKER-76).
 
+##${title}
+
+It is possible to run Cargo Tracker on WebLogic with any Maven capable IDE or without an IDE. In the following instructions we will outline how to do so specifically with NetBeans. The instructions should be generally helpful with running the application any other way using WebLogic such as in another Maven capable IDE like IntelliJ. Note that we currently do not recommend Eclipse due to it's weak support of Maven. For detailed reasons why this is the case, please look [here](https://java.net/jira/browse/CARGOTRACKER-76).
 
 ##Installing and Configuring WebLogic
 
