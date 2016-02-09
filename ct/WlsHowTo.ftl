@@ -58,9 +58,9 @@ The [Cargo Tracker NetBeans instructions with GlassFish](http://git.delabassee.c
  
 * After setting up the server follow the NetBeans instructions to open the Cargo Tracker project. After you open the project but before you build, you will need to switch the Maven profile for the project. The project by default builds for GlassFish, not WebLogic. There are minor configuration differences between WebLogic and GlassFish that are handled by the Maven profile. To switch the Maven profile right click on the project and select "Properties". Go to the Configurations tab and select weblogic. Now make sure to hit "Activate". You can now continue with the NetBeans instructions and initially build the project. Before you run the project you will need to set the server for the project as WebLogic instead of GlassFish.
 
-* To set the project target server as WebLogic, right-click the project and select ‘Properties’. Then select ‘Run’. Select the WebLogic instance you just created as the ‘Server’, make sure the ‘Context Path’ is set to ‘/cargo-tracker’, accept the rest of the defaults and hit ‘OK’. You can now follow the rest of the NetBeans instructions and run the project.
-
 ![ ](/ct/wls_step8.png)
+
+* To set the project target server as WebLogic, right-click the project and select ‘Properties’. Then select ‘Run’. Select the WebLogic instance you just created as the ‘Server’, make sure the ‘Context Path’ is set to ‘/cargo-tracker’, accept the rest of the defaults and hit ‘OK’. You can now follow the rest of the NetBeans instructions and run the project.
 
 ![ ](/ct/wls_step9.png)
  
