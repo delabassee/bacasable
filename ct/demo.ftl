@@ -14,4 +14,6 @@ The following is the functionality highlighted in the demo:
 * Registering cargo life-cycle events using the mobile interface.
 * Registering cargo life-cycle events in bulk using the batch file processing interface.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lLaNa46mqfY" frameborder="0" allowfullscreen></iframe>
+
 If you are having trouble viewing the embedded video, please click [here](https://www.youtube.com/watch?v=lLaNa46mqfY).
