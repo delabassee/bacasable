@@ -1,7 +1,7 @@
 ${bootstrap}${markdown}
 <#--title=Cargo Tracker Demo-->
 <#--author=Reza Rahman-->
-<#--triggerUpdate=2-->
+<#--triggerUpdate=3-->
 ##${title}
 
 The video embedded below demos the major functionality of the Cargo Tracker application. It is intended to be a helpful point to start exploring how the application implements Domain-Driven Design (DDD) using Java EE.
