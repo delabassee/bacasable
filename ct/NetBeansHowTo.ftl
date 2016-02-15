@@ -4,9 +4,9 @@ ${bootstrap}${markdown}
 <#--triggerUpdate=3-->
 ##Prerequisites
 
-* JDK 8 or higher
-* GlassFish 4.1
-* NetBeans 8 or higher (NetBeans 8.1 recommended)
+* JDK 8 or higher. You can download the JDK from [here] (http://www.oracle.com/technetwork/java/javase/downloads/index.html).
+* GlassFish 4.1 (the application requires the full platform edition - the web profile edition won't be enough). Please note that we do not recommend using GlassFish 4.1.1 due to a number of bugs. You can download GlassFish 4.1 from [here] (https://glassfish.java.net/download-archive.html).
+* NetBeans 8 or higher (NetBeans 8.1 recommended) - please make sure to use the Java EE edition of NetBeans. You can download NetBeans from [here] (https://netbeans.org/downloads/).
 
 ##Download
 
