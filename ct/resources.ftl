@@ -6,8 +6,7 @@ ${bootstrap}${markdown}
 
 ##Resources
 
-* The Java EE Tutorial: [http://docs.oracle.com/javaee/7/tutorial/doc/home.htm](http://docs.oracle.com/javaee/7/tutorial/doc/home.htm)
-* Good Video Tutorial on Java EE: [http://www.programming-simplified.com/index.html](http://www.programming-simplified.com/index.html)
+* The Java EE Tutorial: [https://docs.oracle.com/javaee/7/tutorial/](https://docs.oracle.com/javaee/7/tutorial/)
 * DDD Sample: [https://github.com/citerus/dddsample-core](https://github.com/citerus/dddsample-core)
 * Domain-Driven Design on Wikipedia: [http://en.wikipedia.org/wiki/Domain-driven_design](http://en.wikipedia.org/wiki/Domain-driven_design)
 * Getting Started with Domain-Driven Design: [http://refcardz.dzone.com/refcardz/getting-started-domain-driven](http://refcardz.dzone.com/refcardz/getting-started-domain-driven)
