@@ -8,7 +8,7 @@ ${bootstrap}${markdown}
 ##Layers/Architecture
 The Cargo Tracker application is layered as illustrated by this picture:
 
-![ ](/ct/layers.jpg)
+![xxx](/ct/layers.jpg)
 _(Image credited to the [DDDSample](https://github.com/citerus/dddsample-core] project)_
 
 As you can see, there are three vertical layers: Interfaces, Application and Domain, each supported by different kinds of Infrastructure. In the application, the [package naming](http://java.net/projects/cargotracker/sources/svn/show/src/main/java/net/java/cargotracker) reflects these layers.
