@@ -1,7 +1,7 @@
 ${bootstrap}${markdown}
 <#--title=Characterization-->
 <#--author=Reza Rahman-->
-<#--triggerUpdate=2-->
+<#--triggerUpdate=4-->
 ##Characterization
 
 Careful characterization of classes is a key activity when doing Domain-Driven Design. Fortunately, most of the time it is fairly obvious what category a particular class belongs to. Other times it is not as easy to sort out and careful analysis, team collaboration and refactoring is necessary.
