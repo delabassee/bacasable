@@ -4,9 +4,6 @@ ${bootstrap}${markdown}
 <#--triggerUpdate=0-->
 ##Characterization
 
-[[image: cargo-tracker-banner.png|617x63px]]
-
-
 Careful characterization of classes is a key activity when doing Domain-Driven Design. Fortunately, most of the time it is fairly obvious what category a particular class belongs to. Other times it is not as easy to sort out and careful analysis, team collaboration and refactoring is necessary.
 
 The trickiest ones to classify are typically Entities, Aggregates, Value Objects and Domain Events. When possible, you should favor Value Objects over Entities or Domain Events, because they require less attention during implementation. Value Objects can be created and thrown away at will, and since they are immutable we can pass them around as we wish. We must be much less cavalier with Entities as identity and life-cycle have to be carefully managed.
@@ -18,7 +15,7 @@ Below is a short walkthrough of key classes in the application and the motivatio
 
 The cargo's delivery state will change during it's lifetime. It's transport status will start out as NOT_RECEIVED, i.e. booked but not yet handed over to the shipping company at the port, and in the normal case ends its life as CLAIMED (note that this is a property of the cargo's [Delivery](http://java.net/projects/cargotracker/sources/svn/content/src/main/java/net/java/cargotracker/domain/model/cargo/Delivery.java), tracking the current state the cargo. During a cargo's lifetime it may be assigned new destinations, its itinerary may be changed many times and it's delivery will be recalculated as new [HandlingEvent](http://java.net/projects/cargotracker/sources/svn/content/src/main/java/net/java/cargotracker/domain/model/handling/HandlingEvent.java)'s are received.
 
-[[image: cargo.png]]
+![ ](/ct/cargo.png)
 
 A [Voyage](http://java.net/projects/cargotracker/sources/svn/content/src/main/java/net/java/cargotracker/domain/model/voyage/Voyage.java) is a vessel's trip from origin to destination, typically made up of several segments ([CarrierMovement](http://java.net/projects/cargotracker/sources/svn/content/src/main/java/net/java/cargotracker/domain/model/voyage/CarrierMovement.java)'s). In the application a [Voyage](http://java.net/projects/cargotracker/sources/svn/content/src/main/java/net/java/cargotracker/domain/model/voyage/Voyage.java) consists of a [Schedule](http://java.net/projects/cargotracker/sources/svn/content/src/main/java/net/java/cargotracker/domain/model/voyage/Schedule.java) with the different [CarrierMovement](http://java.net/projects/cargotracker/sources/svn/content/src/main/java/net/java/cargotracker/domain/model/voyage/CarrierMovement.java)'s in it and has a very clear notion of identity,  [VoyageNumber](http://java.net/projects/cargotracker/sources/svn/content/src/main/java/net/java/cargotracker/domain/model/voyage/VoyageNumber.java). This id could be something like a flight number for air shipments or a vessel voyage number for a ship, it is not the name or the identification of the actual vessel.
 
@@ -29,14 +26,14 @@ A [Leg](http://java.net/projects/cargotracker/sources/svn/content/src/main/java/
 
 An [Itinerary](http://java.net/projects/cargotracker/sources/svn/content/src/main/java/net/java/cargotracker/domain/model/cargo/Itinerary.java) consists of a list of legs, with the load location of the first leg in the list as the starting point of the itinerary and the unload location of the last leg as the final destination. The same reasoning applies to itineraries as to legs, they do not have identity and are implemented as Value Objects. Now, a cargo can certainly have its itinerary updated. One way to accomplish this would be to keep the original itinerary instance and update the legs in the itinerary's list, in this case the itinerary must be mutable and has to be implemented as an entity. With the itinerary as a Value Object, as in the case of our application model and implementation, updating it is a simple operation of acquiring a complete new itinerary from the [RoutingService](http://java.net/projects/cargotracker/sources/svn/content/src/main/java/net/java/cargotracker/domain/service/RoutingService.java) and replacing the old one. Implementation of a cargo's itinerary management is much simplified by having the itinerary as a Value Object.
 
-[[image: leg.png]]
+![ ](/ct/leg.png)
 
 Value Objects are typically implemented as JPA embedded objects. However, it is sometimes useful and valid to implement them as JPA entities.
 
 ##Domain Events
 Some things clearly have identity but no life-cycle, or an extremely limited life-cycle with just one state. We call these things Domain Events and they can be viewed as hybrid of Entities and Value Objects. In our application [HandlingEvent](http://java.net/projects/cargotracker/sources/svn/content/src/main/java/net/java/cargotracker/domain/model/handling/HandlingEvent.java) is a Domain Event that represent a real-life event such as cargo being loaded or unloaded, customs cleared etc. They carry both a completion time and a registration time. The completion time is the time when the event occurred and the registration time is the time when the event was received by the system. The handling event id is composed of the cargo, voyage, completion time, location and type (LOAD, UNLOAD etc).
 
-[[image: handling_event.png]]
+![ ](/ct/handling_event.png)
 
 Domain Events are usually implemented as JPA entities.
 
@@ -45,7 +42,7 @@ In real life most things are connected, directly or indirectly. Mimicking this a
 
 Cargo is the central aggregate in the application. The classes in the cargo aggregate are in the [net.java.cargotracker.domain.model.cargo](http://java.net/projects/cargotracker/sources/svn/show/src/main/java/net/java/cargotracker/domain/model/cargo) package. Cargo is the aggregate root and the aggregate also contains the Value Objects delivery, itinerary, leg and a few more classes.
 
-[[image: aggregate.png]]
+![ ](/ct/aggregate.png)
 
 Handling is another important aggregate. It contains the handling events that are registered throughout a cargo's progress from NOT_RECEIVED to CLAIMED. The handling events have a relation to the cargo for which the event belongs. This is allowed since cargo itself is an aggregate root.
 
@@ -54,7 +51,7 @@ The main reason for not making handling event part of the cargo aggregate is per
 ##Repositories
 With the aggregates and their roots identified it is fairly trivial to identify the Repositories. Repositories retrieve and save aggregate roots from and to persistent storage. In our application there is one Repository per aggregate root. For example, the [CargoRepository](http://java.net/projects/cargotracker/sources/svn/content/src/main/java/net/java/cargotracker/domain/model/cargo/CargoRepository.java) is responsible for finding and storing cargo aggregates. The finders return Cargo instances or lists of Cargo instances.
 
-[[image: cargo_repository.png]]
+![ ](/ct/cargo_repository.png)
 
 While Repository interfaces are part of the domain layer, their implementations are part of the infrastructure layer. For example the CargoRepository has JPA implementation in the infrastructure layer, [JpaCargoRepository](http://java.net/projects/cargotracker/sources/svn/content/src/main/java/net/java/cargotracker/infrastructure/persistence/jpa/JpaCargoRepository.java).
 
@@ -70,13 +67,13 @@ Domain services encapsulate key domain concepts that just are not naturally mode
 
 A good example of that is the [RoutingService](http://java.net/projects/cargotracker/sources/svn/content/src/main/java/net/java/cargotracker/domain/service/RoutingService.java), which provides access to the routing system and is used to find possible routes for a given specification. The implementation, [ExternalRoutingService](http://java.net/projects/cargotracker/sources/svn/content/src/main/java/net/java/cargotracker/infrastructure/routing/ExternalRoutingService.java), communicates with another system and translates to/from an external API/data model in the infrastructure layer.
 
-[[image: routing_service.png]]
+![ ](/ct/routing_service.png)
 
 On the other hand, if the service can be implemented strictly using the domain layer, both the interface and the implementation could be part of the domain layer.
 
 ##Application Services
 Application services represent the high level business operations for the system and constitute the application layer. They provide a high-level abstraction for clients to use when interacting with the domain. The [net.java.cargotracker.application](http://java.net/projects/cargotracker/sources/svn/show/src/main/java/net/java/cargotracker/application) package container all the services for the application such as [BookingService](http://java.net/projects/cargotracker/sources/svn/content/src/main/java/net/java/cargotracker/application/BookingService.java) and [HandlingEventService](http://java.net/projects/cargotracker/sources/svn/content/src/main/java/net/java/cargotracker/application/HandlingEventService.java). The application services are a natural place to apply concerns such as pooling, transactions and security. This is why application services are typically implemented using EJB or transactional CDI beans.
 
-[[image: booking_service.png]]
+![ ](/ct/booking_service.png)
 
 In some situations, e.g. when dealing with graphs of lazy-loaded domain objects or when passing services' return values over network boundaries, the services are wrapped in facades. The facades handle ORM session management issues and/or convert the domain objects to more portable Data Transfer Objects that can be tailored to specific use cases. In that case, we consider the DTO-serializing facade part of the interfaces layer. See [BookingServiceFacade](http://java.net/projects/cargotracker/sources/svn/content/src/main/java/net/java/cargotracker/interfaces/booking/facade/BookingServiceFacade.java) for an example.
