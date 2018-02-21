@@ -1,6 +1,6 @@
 # Serverless Kotlin with Fn Project
 
-This post describes how to add additional languages in [Fn Project](https://github.com/fnproject/) and uses Kotlin as an example. If you just want to know how to use Kotlin to write functions on top of Fn, you can skip the next section and go directly to the [Serverless Kotlin](#Serverless-Kotlin) section below. 
+This post describes how to add additional languages in [Fn Project](https://github.com/fnproject/) and uses Kotlin as an example. If you just want to know how to use Kotlin to write functions on top of Fn, you can skip the next section and go directly to the [Serverless Kotlin](#serverless-kotlin) section below. 
 
 The goal of a Function Development Kit (FDK) is to simplify the development of functions for a given language. For example, the Java FDK allows the development of (Java-based) functions using typical Java tools (ex. Maven for building the function and manage its dependencies, JUnit for testing this function, etc.). Some FDKs are also adding extra capabilities like [Data Binding for function input and output](https://github.com/fnproject/fdk-java/blob/master/docs/DataBinding.md), [Fn Flow](https://github.com/fnproject/flow) support, etc. Fn Project will come with various FDKs: [Java](https://github.com/fnproject/fdk-java), Go, Python, Ruby, Node (experimental) and Rust (experimental).
 
@@ -13,7 +13,7 @@ To add support for a new compiled language, you need to know how to compile this
 The [Kotlin helper](https://github.com/fnproject/cli/blob/master/langs/kotlin.go) is pretty straightforward :
 * [GenerateBoilerplate()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L45-L79) will generates the boilerplate function and the simple test harness.
 
-* [BuildFromImage() and RunFromImage()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L29-L37) specify the Docker images to use. The Build image will be invoked to compile the Kotlin function and produce a JAR, the Run image will be used to run that JAR. In this case, the kotlin code will be compiled to JavaByte code so we can use the standard Java FDK Docker image. This will give us some nice freebies such as function input and output binding. Those 2 entries will be added to the function configuration file (func.yaml).
+* [BuildFromImage() and RunFromImage()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L29-L37) specify the Docker images to use. The Build image will be invoked to compile the Kotlin function into a JAR while the Run image will be used to run that JAR. In this particular case, the Kotlin code will be compiled to JavaByte code so we can use the standard Java FDK Docker image. This will give us some nice freebies such as function input and output binding. Those 2 entries will be added to the function configuration file (func.yaml).
 
 * [DockerfileBuildCmds()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L93-L99) is copying the sources of the function into the (Build) Docker image and add a call to *kotlinc* to compile the function.
 
