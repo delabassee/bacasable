@@ -10,25 +10,42 @@ Languages are supported via the Fn [CLI](https://github.com/fnproject/cli); each
 
 To add support for a new compiled language, you need to know how to compile this language, how to run the compiled artifact and a little bit of Go to actually write the corresponding Fn language helper.
 
-The [Kotlin helper](https://github.com/fnproject/cli/blob/master/langs/kotlin.go) is pretty straightforward. In a nutshell, 
+The [Kotlin helper](https://github.com/fnproject/cli/blob/master/langs/kotlin.go) is pretty straightforward :
 * [GenerateBoilerplate()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L45-L79) will generates the boilerplate function and the simple test harness.
 
-* [BuildFromImage() and RunFromImage()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L29-L37) specify the Docker images to use. The Build image will be invoked to compile the Kotlin function and produce a JAR, the Run image will be used to run that JAR. In this case, the kotlin code will be compiled to JavaByte code so we can use the standard Java FDK Docker image. This will offer some nice freebies such as function input and output binding. Those entries will be added to the func.yaml configuration file.
+* [BuildFromImage() and RunFromImage()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L29-L37) specify the Docker images to use. The Build image will be invoked to compile the Kotlin function and produce a JAR, the Run image will be used to run that JAR. In this case, the kotlin code will be compiled to JavaByte code so we can use the standard Java FDK Docker image. This will give us some nice freebies such as function input and output binding. Those 2 entries will be added to the function configuration file (func.yaml).
 
-* [DockerfileBuildCmds()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L93-L99) is copying the sources of the function into the (Build) Docker image and add a call to kotlinc to compile the function.
+* [DockerfileBuildCmds()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L93-L99) is copying the sources of the function into the (Build) Docker image and add a call to *kotlinc* to compile the function.
 
-* [DockerfileCopyCmds()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L87-L91) is copying the JAR into the (Run) Docker image.
+* [DockerfileCopyCmds()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L87-L91) is copying the function JAR into the (Run) Docker image.
 
-* [Cmd()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L82-L84) specify the entry point of the Run image, that' the actual Kotlin function prefixed with its class name.
+* [Cmd()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L82-L84) specify the entry point of the (Run) Docker image, it is the actual Kotlin function prefixed with its class name.
 
-The rest is really self-explanatory. Browsing [base.go](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/base.go) might help.  And that's it! The [Kotlin language helper](https://github.com/fnproject/cli/blob/master/langs/kotlin.go) is really simple as all the (Docker) plumbing is handled by Fn regardless of the language.
+The rest is really self-explanatory. Browsing [base.go](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/base.go) might also be useful to grasp how things work. And that's really it! The [Kotlin language helper](https://github.com/fnproject/cli/blob/master/langs/kotlin.go) is really simple as all the (Docker) plumbing is handled by Fn.
 
 ## Serverless Kotlin 
 
-All it takes to generate a Kotlin function is to invoke  'fn init' and specify that you want to use the Kotlin runtime.
+All it takes to generate a Kotlin function is to invoke 'init' and specify that you want to use the Kotlin runtime, i.e. that you want to use the Kotlin language helper.
 ```fn init --runtime kotlin myFunc```
 
-This will create a simple barebone HelloWorld function with a simple test harness. The function gets some JSON payload and outputs some JSON payload. The input and output coercion is transparently provided by the Java FDK. 
+This will create a simple barebone HelloWorld function with a simple test harness. This sample function gets some JSON payload and outputs some JSON payload. The input and output coercion is transparently provided by the Java FDK.
+
+```kotlin
+class Input ( var name: String = "")
+class Response( var message: String = "Hello World" )
+
+fun hello(param: Input): Response {
+
+	var response = Response()
+
+	if (param.name.isNotEmpty()) {
+		response.message = "Hello " + param.name
+	}
+
+	return response
+}
+```
+
 
 To run your Kotlin function, you just need to pass it some appropriate JSON payload. 
 ```cat in.json | fn run myFunc```
