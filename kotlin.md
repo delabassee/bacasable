@@ -47,7 +47,7 @@ fun hello(param: Input): Response {
 }
 ```
 
-To run your Kotlin function, you just need to pass it some appropriate JSON payload.
+The rest is pretty stanadrd. To run your Kotlin function, you just need to pass it some appropriate JSON payload.
 
 ```echo '{"name":"Kotlin"}' | fn run kotfunc```
 
