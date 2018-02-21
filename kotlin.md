@@ -1,28 +1,27 @@
 # Serverless Kotlin with Fn Project
 
-This post describes how to add additional languages in Fn Project and uses Kotlin as an example. If you just want to know how to use Kotlin to write functions on top of Fn, you can skip the next section and go directly to the "Serverless Kotlin" section. Heads-up, it's short and easy! 
+This post describes how to add additional languages in [Fn Project](https://github.com/fnproject/) and uses Kotlin as an example. If you just want to know how to use Kotlin to write functions on top of Fn, you can skip the next section and go directly to the "Serverless Kotlin" section. Heads-up, it's short and easy! 
 
-The goal of a Function Development Kit (FDK) is to simplify the development of functions for a given language. For example, the Java FDK allows the development of (Java-based) functions using typical Java tools (ex. Maven for building the function and manage its dependencies, JUnit for testing this function, etc.). Some FDKs are also adding extra capabilities like [Data Binding for function input and output](https://github.com/fnproject/fdk-java/blob/master/docs/DataBinding.md), Fn Flow support, etc. Fn Project comes with various FDKs: Java, Go, Python, Ruby, Node (experimental) and Rust (experimental).
+The goal of a Function Development Kit (FDK) is to simplify the development of functions for a given language. For example, the Java FDK allows the development of (Java-based) functions using typical Java tools (ex. Maven for building the function and manage its dependencies, JUnit for testing this function, etc.). Some FDKs are also adding extra capabilities like [Data Binding for function input and output](https://github.com/fnproject/fdk-java/blob/master/docs/DataBinding.md), [Fn Flow](https://github.com/fnproject/flow) support, etc. Fn Project comes with various FDKs: Java, Go, Python, Ruby, Node (experimental) and Rust (experimental).
 
-FDKs are very helpful but it is certainly also possible to write functions without an FDK. And given that Fn is using containers, it is also relatively straightforward to add support for new languages. To illustrate this, here is a quick overview that explains what was necessary to add Kotlin support in Fn. 
+FDKs are very helpful but it is certainly also possible to write functions without a FDK. And given that Fn is using containers, it is also relatively straightforward to add support for new languages. To illustrate this, here is a quick overview that show how Kotlin support was added to Fn. 
 
-Languages are supported via the Fn [CLI](https://github.com/fnproject/cli); each supported language has [its own specific helper](https://github.com/fnproject/cli/tree/master/langs). Those helpers are responsible for generating some boilerplate, i.e. a simple function and its eventual related files like a POM.xml for a Java function, a simple test harness, the function configuration file (func.yaml), etc. Helpers are registered [here](https://github.com/fnproject/cli/blob/master/langs/base.go#L12-L26).
+Languages are supported via the Fn [CLI](https://github.com/fnproject/cli); each supported language has its own [specific helper](https://github.com/fnproject/cli/tree/master/langs). Those helpers are responsible for generating some boilerplate, i.e. a simple function and its eventual related files like a POM.xml for a Java function, a simple test harness, the function configuration file (func.yaml), etc. Those helpers are registered [here](https://github.com/fnproject/cli/blob/master/langs/base.go#L12-L26).
 
 To add support for a new compiled language, you need to know how to compile this language, how to run the compiled artifact and a little bit of Go to actually write the corresponding Fn language helper.
 
-The Kotlin helper is pretty straightforward, see [here](https://github.com/fnproject/cli/blob/master/langs/kotlin.go).
+The [Kotlin helper](https://github.com/fnproject/cli/blob/master/langs/kotlin.go) is pretty straightforward. In a nutshell, 
+* [GenerateBoilerplate()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L45-L79) will generates the boilerplate function and the simple test harness.
 
-[GenerateBoilerplate()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L45-L79) will generates the boilerplate function and the simple test harness.
+* [BuildFromImage() and RunFromImage()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L29-L37) specify the Docker images to use. The Build image will be invoked to compile the Kotlin function and produce a JAR, the Run image will be used to run that JAR. In this case, the kotlin code will be compiled to JavaByte code so we can use the standard Java FDK Docker image. This will offer some nice freebies such as function input and output binding. Those entries will be added to the func.yaml configuration file.
 
-[BuildFromImage() and RunFromImage()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L29-L37) specify the Docker images to use. The Build image will be invoked to compile the Kotlin function and produce a JAR, the Run image will be used to run that JAR. In this case, the kotlin code will be compiled to JavaByte code so we can use the standard Java FDK Docker image. This will offer some nice freebies such as function input and output binding. Those entries will be added to the func.yaml configuration file.
+* [DockerfileBuildCmds()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L93-L99) is copying the sources of the function into the (Build) Docker image and add a call to kotlinc to compile the function.
 
-[DockerfileBuildCmds()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L93-L99) is copying the sources of the function into the (Build) Docker image and add a call to kotlinc to compile the function.
+* [DockerfileCopyCmds()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L87-L91) is copying the JAR into the (Run) Docker image.
 
-[DockerfileCopyCmds()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L87-L91) is copying the JAR into the (Run) Docker image.
+* [Cmd()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L82-L84) specify the entry point of the Run image, that' the actual Kotlin function prefixed with its class name.
 
-[Cmd()](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/kotlin.go#L82-L84) specify the entry point of the Run image, that' the actual Kotlin function prefixed with its class name.
-
-Browsing [base.go](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/base.go) might help but the rest is really self-explanatory. And that's it! The [Kotlin language helper](https://github.com/fnproject/cli/blob/master/langs/kotlin.go) is really simple as all the (Docker) plumbing is handled by Fn regardless of the language.
+The rest is really self-explanatory. Browsing [base.go](https://github.com/fnproject/cli/blob/db4334233b35e419ac616a3fb0a41d2e8972c1c6/langs/base.go) might help.  And that's it! The [Kotlin language helper](https://github.com/fnproject/cli/blob/master/langs/kotlin.go) is really simple as all the (Docker) plumbing is handled by Fn regardless of the language.
 
 ## Serverless Kotlin 
 
