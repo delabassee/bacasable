@@ -29,7 +29,7 @@ All it takes to generate a Kotlin function is to invoke 'fn init' command and sp
 
 ```fn init --runtime kotlin kotfunc```
 
-This will create a simple barebone HelloWorld function with a simple test harness. This sample function gets some JSON payload and outputs some JSON payload. The input and output coercion is transparently provided by the Java FDK.
+This will create a simple barebone HelloWorld function with a simple test harness. This function gets some JSON payload and outputs some JSON payload. The input and output coercion is transparently provided by the Java FDK.
 
 ```kotlin
 class Input ( var name: String = "")
