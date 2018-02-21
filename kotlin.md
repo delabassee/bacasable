@@ -47,11 +47,11 @@ fun hello(param: Input): Response {
 }
 ```
 
-The rest is pretty stanadrd. To run your Kotlin function, you just need to pass it some appropriate JSON payload.
+The rest is pretty standard. To run your Kotlin function, you just need to pass it some appropriate JSON payload.
 
 ```echo '{"name":"Kotlin"}' | fn run kotfunc```
 
-You can test your Kotlin function as you would do with another function.
+You can test your Kotlin function as you would do with any another function.
 
 ```fn test kotfunc```
 
