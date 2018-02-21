@@ -55,7 +55,7 @@ You can test your Kotlin function as you would do with another function.
 
 ```fn test kotfunc```
 
-And obviously, this simple Kotlin function can be deployed to a Fn Server (```fn deploy```), invoked from a Fn Flow, etc.
+And obviously, this Kotlin function can be deployed to a Fn Server (```fn deploy```), invoked from a Fn Flow, etc.
 
 PS: Koltin support is, as such, still experimental, i.e. _'not officially supported'_.
 
