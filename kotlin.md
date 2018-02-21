@@ -26,7 +26,8 @@ The rest is really self-explanatory. Browsing [base.go](https://github.com/fnpro
 ## Serverless Kotlin 
 
 All it takes to generate a Kotlin function is to invoke 'init' and specify that you want to use the Kotlin runtime, i.e. that you want to use the Kotlin language helper.
-```fn init --runtime kotlin myFunc```
+
+```fn init --runtime kotlin kotfunc```
 
 This will create a simple barebone HelloWorld function with a simple test harness. This sample function gets some JSON payload and outputs some JSON payload. The input and output coercion is transparently provided by the Java FDK.
 
@@ -46,12 +47,13 @@ fun hello(param: Input): Response {
 }
 ```
 
+To run your Kotlin function, you just need to pass it some appropriate JSON payload.
 
-To run your Kotlin function, you just need to pass it some appropriate JSON payload. 
-```cat in.json | fn run myFunc```
+```echo '{"name":"Kotlin"}' | fn run kotfunc```
 
 You can test your Kotlin function as you would do with another function.
-```fn test myFunc```
+
+```fn test kotfunc```
 
 And obviously, this simple Kotlin function can be deployed to a Fn Server (```fn deploy```), invoked from a Fn Flow, etc.
 
