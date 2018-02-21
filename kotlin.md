@@ -25,7 +25,7 @@ The rest is really self-explanatory. Browsing [base.go](https://github.com/fnpro
 
 ## Serverless Kotlin 
 
-All it takes to generate a Kotlin function is to invoke 'init' and specify that you want to use the Kotlin runtime, i.e. that you want to use the Kotlin language helper.
+All it takes to generate a Kotlin function is to invoke 'fn init' command and specify that you want to use the Kotlin runtime, i.e. that you want to use the Kotlin language helper.
 
 ```fn init --runtime kotlin kotfunc```
 
