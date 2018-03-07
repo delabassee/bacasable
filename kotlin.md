@@ -3,6 +3,7 @@
 This post describes how to add additional languages in [Fn Project](https://github.com/fnproject/) and uses Kotlin as an example. If you just want to know how to use Kotlin to write functions on top of Fn, you can skip the next section and go directly to the [Serverless Kotlin](#serverless-kotlin) section below. 
 
 The goal of a Function Development Kit (FDK) is to simplify the development of functions for a given language. For example, the Java FDK allows the development of (Java-based) functions using typical Java tools (ex. Maven for building the function and manage its dependencies, JUnit for testing this function, etc.). Some FDKs are also adding extra capabilities like [Data Binding for function input and output](https://github.com/fnproject/fdk-java/blob/master/docs/DataBinding.md), [Fn Flow](https://github.com/fnproject/flow) support, etc. Fn Project will come with various FDKs: [Java](https://github.com/fnproject/fdk-java), Go, Python, Ruby, Node (experimental) and Rust (experimental).
+:exclamation:What is the exact list of FDKs and supoprted langs?:exclamation:
 
 FDKs are very helpful but it is certainly also possible to write functions without a FDK. And given that Fn is using containers, it is also relatively straightforward to add support for new languages. To illustrate this, here is a quick overview that shows how Kotlin support has been added to Fn. 
 
