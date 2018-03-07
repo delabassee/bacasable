@@ -60,5 +60,4 @@ And obviously, this Kotlin function can be deployed to a Fn Server (```fn deploy
 
 PS: Koltin support is, as such, still experimental, i.e. _'not officially supported'_.
 
-PPS: I am not a Kotlin developer!
 
