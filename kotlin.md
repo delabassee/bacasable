@@ -8,7 +8,7 @@ The goal of a Function Development Kit (FDK) is to simplify the development of f
 
 FDKs are very helpful but it is certainly also possible to write functions without a FDK. And given that Fn is using containers, it is also relatively straightforward to add support for new languages. To illustrate this, here is a quick overview that shows how Kotlin support has been added to Fn. 
 
-Languages are supported via the Fn [CLI](https://github.com/fnproject/cli); each supported language has its own [specific helper](https://github.com/fnproject/cli/tree/master/langs). Those helpers are responsible for generating some boilerplate, i.e. a simple function and its eventual related files like a POM.xml for a Java function, a simple test harness, the function configuration file (func.yaml), etc. Those helpers are registered [here](https://github.com/fnproject/cli/blob/master/langs/base.go#L12-L26).
+Languages are supported via the Fn [CLI](https://github.com/fnproject/cli), a Go based application. Each supported language has its own [specific helper](https://github.com/fnproject/cli/tree/master/langs). Those helpers are responsible for generating some boilerplate, i.e. a simple function and its eventual related files like a POM.xml for a Java function, a simple test harness, the function configuration file (func.yaml), etc. Those helpers are registered [here](https://github.com/fnproject/cli/blob/master/langs/base.go#L12-L26).
 
 To add support for a new compiled language, you need to know how to compile this language, how to run the compiled artifact and a little bit of Go to actually write the corresponding Fn language helper.
 
